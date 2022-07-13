@@ -1,0 +1,37 @@
+#!/usr/bin/python3
+#pip3 install python-nmap
+
+import nmap
+import os
+sc = nmap.PortScanner()
+print("Welcome to the Myamo's DDOS Tool")
+
+def main():
+    n = input("1- Network scanner\n2- Vulnerabilities Detection\n3- Exploit\n\nPlease enter a number : ")
+
+    if n == '1':
+        nmap()
+
+    if n== '3':
+        os.system('msfconsole')
+
+    else :
+        print("Please choose a number between 1 and 3")
+
+def nmap():
+    print("***********************Network Scanner***********************")
+    print("*************************************************************")
+    ip = input("\nPlease enter the IP adress: ")
+    sc.scan(ip , '1-1024')
+    print(sc.scaninfo())
+    print(sc[ip]['tcp'].keys())
+
+
+
+def vuln():
+    print("***********************Vulnerabilities Scanner***********************")
+    print("*********************************************************************")
+    ip = input("\nPlease enter the IP adress: ")
+    print(os.system('nmap -sV --script=vulcan.nse ' +ip))
+if __name__ == "__main__":
+    main()
